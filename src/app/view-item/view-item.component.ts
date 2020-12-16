@@ -12,11 +12,6 @@ export class ViewItemComponent implements OnInit {
   ngOnInit(): void {
     this.data=items;
   }
-  // updateList(id: number, property: string, event: any) {
-  //   let editField = event.target.textContent;
-  //   this.data[id][property] = editField;
-  //   console.log(this.data)
-  // }
   remove(id: any) {
     this.data.splice(id, 1);
   }

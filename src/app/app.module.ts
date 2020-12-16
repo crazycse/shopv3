@@ -5,29 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { ViewItemComponent } from './view-item/view-item.component';
 import { RouterModule } from '@angular/router';
-import { EditItemComponent } from './edit-item/edit-item.component';
-import {MatSelectModule} from '@angular/material/select';
-
+import { HttpClientModule } from '@angular/common/http';
  
 @NgModule({
   declarations: [
     AppComponent,
     AddItemComponent,
     ViewItemComponent,
-    EditItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: ViewItemComponent },
-      { path: 'add', component: AddItemComponent },
-      { path: 'edit/:itemId', component:EditItemComponent},
+      { path: 'add/:itemId', component: AddItemComponent },
     ])
   ],
   providers: [],

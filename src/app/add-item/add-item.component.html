@@ -12,6 +12,11 @@
           <option value="Vegetable">Vegetable</option>
           <option value="Fruit">Fruit</option>
         </select>
+        <div *ngIf="Category.invalid && (Category.dirty || Category.touched)" class="alert alert-danger">
+          <div *ngIf="Category.errors.required">
+            *Category is required.
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -20,18 +25,27 @@
       </div>
 
       <div class="col-75">
-        <input type="text" formControlName="Name" placeholder="Item Name" required>
+        <input type="text" id="Name" formControlName="Name" placeholder="Item Name" >
+        <div *ngIf="Name.invalid && (Name.dirty || Name.touched)" class="alert alert-danger">
+          <div *ngIf="Name.errors.required">
+            *Name is required.
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label>
-          Item Total kg
-          
+          Item Total kg   
         </label>
       </div>
       <div class="col-75">
-        <input type="number" formControlName="Total_kg" placeholder="Total Kilogram" required>
+        <input type="number" formControlName="Total_kg" placeholder="Total Kilogram" >
+        <div *ngIf="Total_kg.invalid && (Total_kg.dirty || Total_kg.touched)" class="alert alert-danger">
+          <div *ngIf="Total_kg.errors.required">
+            *Total KG is required.
+          </div>
+        </div>
       </div>
     </div>
       <div class="row">
@@ -41,17 +55,27 @@
           </label>
         </div>
         <div class="col-75">
-          <input type="number" formControlName="Price_kg" placeholder="Price per kilogram" required>
+          <input type="number" formControlName="Price_kg" placeholder="Price per kilogram" >
+          <div *ngIf="Price_kg.invalid && (Price_kg.dirty || Price_kg.touched)" class="alert alert-danger">
+            <div *ngIf="Price_kg.errors.required">
+              *Price per KG is required.
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-25">
           <label>
-            Date
+            Exp Date
           </label>
         </div>
         <div class="col-75">
           <input type="date" formControlName="Exp_date" >
+          <div *ngIf="Exp_date.invalid && (Exp_date.dirty || Exp_date.touched)" class="alert alert-danger">
+            <div *ngIf="Exp_date.errors.required">
+              *Exp Date is required.
+            </div>
+          </div>
         </div>
       </div>
       <br>
@@ -60,7 +84,7 @@
         <input type="reset" value="Reset">
       </div>
   </form>
-  <div *ngIf="save==true" role="alert">
-    <strong>List Saved!</strong> Your changes has been saved.
+  <div *ngIf="save==false" role="alert">
+    <strong>Fill!</strong> All Field
   </div>
 </div>

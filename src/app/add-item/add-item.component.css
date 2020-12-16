@@ -9,7 +9,17 @@ input[type=text],input[type=number],input[type=date] ,select, textarea {
   border-radius: 4px;
   resize: vertical;
 }
-
+.alert {
+  font-size: small;
+  padding: 10px;
+  color: red;
+}
+.ng-valid:not(form)  {
+  border-left: 5px solid #42A948; 
+}
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; 
+}
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
@@ -59,12 +69,6 @@ input[type=submit]:hover,input[type=reset]:hover {
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] , input[type=reset]{
     width: 100%;
-    margin-top: 0;
-  }
-}
-@media screen and (min-width: 800px) {
-  .col-75{
-    width: 50%;
     margin-top: 0;
   }
 }
