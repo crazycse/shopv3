@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { items } from '../item';
+import { items , none_image} from '../item';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-add-item',
@@ -26,6 +26,7 @@ export class AddItemComponent implements OnInit {
           Price_kg: null,
           Total_price: null,
           Exp_date: null,
+          image:null
         }
       }
       else {
@@ -37,7 +38,8 @@ export class AddItemComponent implements OnInit {
       Name: new FormControl(this.data.Name, Validators.required),
       Total_kg: new FormControl(this.data.Total_kg, Validators.required),
       Price_kg: new FormControl(this.data.Price_kg, Validators.required),
-      Exp_date: new FormControl(this.data.Exp_date, Validators.required)
+      Exp_date: new FormControl(this.data.Exp_date, Validators.required),
+      image : new FormControl(this.data.image )
     })
   }
   get Category() { return this.item_form.get('Category'); }
@@ -45,11 +47,22 @@ export class AddItemComponent implements OnInit {
   get Total_kg() { return this.item_form.get('Total_kg'); }
   get Price_kg() { return this.item_form.get('Price_kg'); }
   get Exp_date() { return this.item_form.get('Exp_date'); }
+  get image() { return this.item_form.get('image')}
+  upload(event){
+    const file = (event.target as HTMLInputElement).files[0];
+    
+    this.item_form.get('image').updateValueAndValidity()
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.item_form.patchValue({
+      image: reader.result 
+    });      
+    }
+    reader.readAsDataURL(file)
+  }
   Onsubmit() {
-    this.item_form.valid
     this.data = this.item_form.value;
-    if (this.data.Category == null || this.data.Name == null || this.data.Total_kg == null
-      || this.data.Exp_date == null || this.data.Price_kg == null) {
+    if (this.item_form.valid==false) {
       console.log("Not Work");
       this.save = false;
       return
@@ -58,14 +71,15 @@ export class AddItemComponent implements OnInit {
       this.save = true;
     }
     this.data.Total_price = this.data.Total_kg * this.data.Price_kg;
-    console.log(this.id)
+    this.data.image = none_image;
+    this.data.Exp_date=(this.data.Exp_date.getMonth()+1)+'/'+this.data.Exp_date.getDate()+'/'+this.data.Exp_date.getYear()
     if (isNaN(this.id)){
-      items.push(this.data);
-      
+      items.push(this.data); 
     } 
     else{
       items.splice(this.id, 1, this.data);
     }
+    console.log(this.data)
     this.rout.navigate(['/']);
   }
 

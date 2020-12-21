@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { items } from '../item';
+import { MatTable } from '@angular/material/table';
+
 @Component({
   selector: 'app-view-item',
   templateUrl: './view-item.component.html',
@@ -7,6 +9,9 @@ import { items } from '../item';
 })
 export class ViewItemComponent implements OnInit {
   data:any;
+  imageURL : any;
+  tableColumns  :  string[] =['id','Category','Name','Total_kg','Price_kg','Total_price','Exp_date','image','Command'];
+  @ViewChild(MatTable,{static:true}) table: MatTable<any>;
   constructor() { }
 
   ngOnInit(): void {
@@ -14,6 +19,7 @@ export class ViewItemComponent implements OnInit {
   }
   remove(id: any) {
     this.data.splice(id, 1);
+    this.table.renderRows();
   }
 
 }

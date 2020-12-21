@@ -7,8 +7,9 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewItemComponent } from './view-item/view-item.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
- 
+import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    MatTableModule,
+    MatNativeDateModule,
+    
+    MatDatepickerModule,
     RouterModule.forRoot([
       { path: '', component: ViewItemComponent },
       { path: 'add/:itemId', component: AddItemComponent },
