@@ -70,13 +70,14 @@
     <ng-container  matColumnDef="Total_price">
       <th mat-header-cell *matHeaderCellDef> Total_price </th>
       <td mat-cell *matCellDef="let element">{{element.Total_price}}</td>
-    </ng-container><ng-container  matColumnDef="Exp_date">
+    </ng-container>
+    <ng-container  matColumnDef="Exp_date">
       <th mat-header-cell *matHeaderCellDef> Exp_date </th>
-      <td mat-cell *matCellDef="let element">{{element.Exp_date}}</td>
+      <td mat-cell *matCellDef="let element">{{element.Exp_date | date}}</td>
     </ng-container>
     <ng-container matColumnDef="image">
       <mat-header-cell *matHeaderCellDef> image </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.image.name}}
+      <mat-cell *matCellDef="let element">
       <img [src]="element.image" /> </mat-cell>
     </ng-container>
   <ng-container  matColumnDef="Command">

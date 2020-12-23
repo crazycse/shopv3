@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { items , none_image} from '../item';
+import {  none_image} from '../item';
+import { ItemService } from '../item.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-add-item',
@@ -14,7 +15,8 @@ export class AddItemComponent implements OnInit {
   save = true;
   constructor(
     private rout: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private myservice:ItemService) { }
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = +params.get('itemId')
@@ -30,7 +32,7 @@ export class AddItemComponent implements OnInit {
         }
       }
       else {
-        this.data = items[this.id];
+        this.data = this.myservice.items[this.id];
       }
     });
     this.item_form = new FormGroup({
@@ -71,16 +73,19 @@ export class AddItemComponent implements OnInit {
       this.save = true;
     }
     this.data.Total_price = this.data.Total_kg * this.data.Price_kg;
-    this.data.image = none_image;
-    this.data.Exp_date=(this.data.Exp_date.getMonth()+1)+'/'+this.data.Exp_date.getDate()+'/'+this.data.Exp_date.getYear()
+    if (this.data.image==null){
+      this.data.image = none_image;
+
+    }
+
+    
     if (isNaN(this.id)){
-      items.push(this.data); 
+      this.myservice.addItem(this.data); 
     } 
     else{
-      items.splice(this.id, 1, this.data);
+      this.myservice.items.splice(this.id, 1, this.data);
     }
-    console.log(this.data)
-    this.rout.navigate(['/']);
+    this.rout.navigate(['/view']);
   }
 
 

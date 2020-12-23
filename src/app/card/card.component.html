@@ -1,0 +1,18 @@
+<div>
+    <mat-card class="example-card" >
+        <mat-card-header>
+          <mat-card-title>{{id+1}} ) {{product.Name}}</mat-card-title>
+          <mat-card-subtitle>{{product.Category}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="product.image">
+        <br>
+        <mat-card-content>
+          Price: {{product.Price_kg}} <br> <br>
+          Available: {{product.Total_kg}} KG
+        </mat-card-content>
+        <mat-card-actions>
+            <input type="number" value="1" #kginput>
+          <button mat-button (click)="addToCart(kginput.value,product)">ADD TO CART</button>
+        </mat-card-actions>
+      </mat-card>
+</div>

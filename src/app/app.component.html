@@ -1,6 +1,12 @@
 <div class="header">
   <a routerLink="">Fruit & Vegetable</a>
 </div>
+<div class="toggle_button">
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle routerLink="/view">Owner page</mat-button-toggle>
+    <mat-button-toggle routerLink="/shop">Customer page</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

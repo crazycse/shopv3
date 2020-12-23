@@ -1,0 +1,7 @@
+<div><a routerLink="/cart">Checkout</a></div>
+<br><br><br>
+<div class="flex-container">
+    <div *ngFor="let product of products; let i = index">
+        <app-card [product]="product" [id]="i" (selectedItem)="addToCart($event)"></app-card>
+    </div>
+</div>

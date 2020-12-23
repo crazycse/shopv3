@@ -1,0 +1,13 @@
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+a {
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: rgb(64, 64, 230);
+  padding: 15px 15px 15px 15px;
+  float: right;
+  border-radius: 5px;
+}
