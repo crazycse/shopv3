@@ -4,23 +4,28 @@
 <div style="overflow-x:auto;">
 
     <table mat-table [dataSource]="shopItem">
-        <ng-container *ngFor="let columnName of displayedColumns;" matColumnDef="{{columnName}}">
+        <ng-container *ngFor="let columnName of displayedColumns;  " matColumnDef="{{columnName}}">
             <th mat-header-cell *matHeaderCellDef>
                 {{columnName }} </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element;let i = index">
                 <ng-container *ngIf="columnName == 'image'; else notAnImage">
                     <img [src]="element.image" />
                 </ng-container>
                 <ng-template #notAnImage>
-                    <ng-container *ngIf="columnName == 'Exp_date' ; else notAnDate" >
-                         {{element[columnName]|date}} 
+                    <ng-container *ngIf="columnName == 'Exp_date' ; else notAnDate">
+                        {{element[columnName]|date}}
                     </ng-container>
                     <ng-template #notAnDate>
-                        {{element[columnName]}}
+                        <ng-container *ngIf="columnName=='Remove' ; else notAnRemove">
+                            <button (click)="remove(i)"><span class="material-icons">
+                                delete
+                              </span></button>
+                        </ng-container>
+                         <ng-template #notAnRemove>{{element[columnName]}}</ng-template>
+                        
                     </ng-template>
-                   
                 </ng-template>
-                
+
             </td>
             <td mat-footer-cell *matFooterCellDef>
                 <ng-container *ngIf="columnName == 'Price_kg'">
@@ -29,7 +34,7 @@
                 <ng-container *ngIf="columnName == 'Total_price'">
                     {{getTotalCost()}}
                 </ng-container>
-                 </td>
+            </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

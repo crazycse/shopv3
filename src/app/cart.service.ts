@@ -43,7 +43,6 @@ export class CartService {
 
 
   getShopItems(){
-    console.log(this.shoped_items)
     return this.shoped_items
   }
 

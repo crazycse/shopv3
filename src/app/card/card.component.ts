@@ -13,9 +13,7 @@ export class CardComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
-    console.log(this.id)
-  }
+  ngOnInit(): void { }
   addToCart(kg: number, data: any) {
     this.selectedItem.emit({ id: kg, dataSelected: data })
   }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,9 +14,18 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ItemService } from './item.service';
 import { CartComponent } from './cart/cart.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+//service
+
+import { ItemService} from './item.service';
+
+export function initializeService(appInitService: ItemService) {
+  return (): void => { 
+    return appInitService.startService();
+  }
+}
 
 @NgModule({
   declarations: [
@@ -40,7 +49,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatDatepickerModule,
     MatButtonToggleModule,
   ],
-  providers: [ItemService],
+  providers: [ItemService,
+    {provide: APP_INITIALIZER,useFactory: initializeService, deps: [ItemService], multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
