@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ItemService } from './item.service'
-import { Observable } from 'rxjs'
+import {BehaviorSubject, Observable} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   shoped_items = [];
+  shopedLength:number=0;
   data: any;
   temp:boolean;
+  private sl: BehaviorSubject<number>;
   get shoped_length(){
     return this.shoped_items.length
   }
@@ -29,6 +32,8 @@ export class CartService {
       }
       if (this.temp){
         this.shoped_items.push(this.data);
+        this.shopedLength=this.shoped_items.length;
+        this.sl.next(this.shoped_length)
       }
       
       //Changing original Owner data
@@ -45,8 +50,11 @@ export class CartService {
   getShopItems(){
     return this.shoped_items
   }
+  getShopLength():Observable<number>{
+    return this.sl.asObservable();
+  }
 
-
-
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService) { 
+    this.sl = new BehaviorSubject<number>(this.shoped_length);
+  }
 }

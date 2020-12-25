@@ -80,3 +80,6 @@ input[disabled]{
     margin-top: 0;
   }
 }
+div{
+  text-align: left;
+}

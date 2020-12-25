@@ -1,4 +1,5 @@
-<div><a routerLink="/cart">Checkout</a></div>
+<div><a [matBadge]="shopItemLen" matBadgePosition="before" matBadgeColor="accent" routerLink="/cart">
+        Checkout</a></div>
 <br><br><br>
 <div class="flex-container">
     <div *ngFor="let product of products; let i = index">

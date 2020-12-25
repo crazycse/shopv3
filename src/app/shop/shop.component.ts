@@ -9,9 +9,13 @@ import { selectedModel } from '../../Model/model'
 })
 export class ShopComponent implements OnInit {
   products = this.itemservice.items;
+  shopItemLen:number;
   constructor(private itemservice: ItemService, private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getShopLength().subscribe((value) => {
+      this.shopItemLen=value
+    })
   }
   addToCart(data: selectedModel) {
     this.cartService.addToCart(data.id, data.dataSelected);

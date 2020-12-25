@@ -16,6 +16,7 @@ import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatBadgeModule} from '@angular/material/badge';
 
 //service
 
@@ -48,6 +49,7 @@ export function initializeService(appInitService: ItemService) {
     HttpClientModule,    
     MatDatepickerModule,
     MatButtonToggleModule,
+    MatBadgeModule,
   ],
   providers: [ItemService,
     {provide: APP_INITIALIZER,useFactory: initializeService, deps: [ItemService], multi: true}],

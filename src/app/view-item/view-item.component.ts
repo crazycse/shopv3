@@ -15,6 +15,7 @@ export class ViewItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.data=this.myService.items
+    console.log(this.data)
   }
   remove(id: any) {
     this.data.splice(id, 1);
