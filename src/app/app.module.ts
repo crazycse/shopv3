@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //service
 
@@ -50,6 +51,8 @@ export function initializeService(appInitService: ItemService) {
     MatDatepickerModule,
     MatButtonToggleModule,
     MatBadgeModule,
+    MatSnackBarModule,
+    
   ],
   providers: [ItemService,
     {provide: APP_INITIALIZER,useFactory: initializeService, deps: [ItemService], multi: true}],

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {  none_image} from '../item';
 import { ItemService } from '../item.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',

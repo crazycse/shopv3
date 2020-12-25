@@ -2,7 +2,8 @@
     height: 50px;
   }
   table{
-    width: 100%;
+    width: 90%;
+    text-align: justify;
   }
   a {
     cursor: pointer;

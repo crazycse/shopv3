@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ItemService } from './item.service'
 import {BehaviorSubject, Observable} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CartService {
   shopedLength:number=0;
   data: any;
   temp:boolean;
-  private sl: BehaviorSubject<number>;
+  public sl: BehaviorSubject<number>;
   get shoped_length(){
     return this.shoped_items.length
   }
@@ -42,7 +43,11 @@ export class CartService {
 
     }
     else{
-      window.alert("Order should be less than Available")
+      this._snackBar.open('Order should be less than Available!!', 'Close', {
+        duration: 5000,
+        horizontalPosition: "right",
+        verticalPosition: "top",
+      });
     }
   }
 
@@ -54,7 +59,8 @@ export class CartService {
     return this.sl.asObservable();
   }
 
-  constructor(private itemService: ItemService) { 
+  constructor(private itemService: ItemService,private _snackBar: MatSnackBar) { 
     this.sl = new BehaviorSubject<number>(this.shoped_length);
+    console.log(this.sl)
   }
 }
